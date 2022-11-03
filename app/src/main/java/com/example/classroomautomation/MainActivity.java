@@ -1,52 +1,54 @@
 package com.example.classroomautomation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
-    Button DBMS, button;
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DBMS = (Button) findViewById(R.id.button);
-        DBMS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.activity_main2);
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, button);
-
-                // Inflating popup menu from popup_menu.xml file
-                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        // Toast message on menu item clicked
-                        Toast.makeText(MainActivity.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-                        return true;
-
-
-                       // setContentView(R.layout.activity_main2);
-
-
-
-                    }
-
-
-                });
-                // Showing the popup menu
-                popupMenu.show();
-            }
-
-
-        });
     }
-}
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_menu);
+        popup.show();
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                Toast.makeText(this, "connecting via bluetooth", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(MainActivity.this, MainActivity2.class);//firstActivity
+                startActivity(intent1);
+                return true;
+
+            case R.id.item2:
+                Toast.makeText(this, "connecting using wifi", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MainActivity.this, MainActivity2.class);//firstActivity
+                startActivity(intent2);
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+
+    }

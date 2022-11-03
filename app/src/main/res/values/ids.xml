@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Light3" type="id" />
+    <item name="Light6" type="id" />
+    <item name="Light5" type="id" />
+    <item name="Light7" type="id" />
+    <item name="Light8" type="id" />
+    <item name="Light2" type="id" />
+    <item name="Light1" type="id" />
+    <item name="textView2" type="id" />
+    <item name="Light4" type="id" />
+    <item name="fan2" type="id" />
+    <item name="fan1" type="id" />
+</resources>
